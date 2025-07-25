@@ -23,7 +23,7 @@ Instrucciones de instalación:
 Actividades completadas:
 [x] Estructura MVC
 [x] Script SQL con 3 tablas y datos
-[ ] Script PHP de inicialización con PDO
+[x] Script PHP de inicialización con PDO
 [ ] Listado de productos aleatorios
 [ ] Categorías y filtro
 [ ] Detalle de producto con comentarios

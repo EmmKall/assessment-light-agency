@@ -1,0 +1,3 @@
+Inicio del proceso de inicialización...
+Inicialización completada con éxito.
+Se insertaron 10 registros en cada tabla.
