@@ -31,4 +31,8 @@ class Product {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function calcularMensualidad($precio, $meses) {
+        return number_format($precio / $meses, 2);
+    }
 }

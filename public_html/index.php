@@ -15,6 +15,11 @@ $method = isset($params[1]) ? $params[1] : 'index';
 $args = array_slice($params, 2);
 
 try {
+    if (!class_exists($controllerName)) {
+        echo "Clase no encontrada: $controllerName<br>";
+        var_dump(get_declared_classes());
+        exit;
+    }
     if (class_exists($controllerName)) {
         $controller = new $controllerName();
 

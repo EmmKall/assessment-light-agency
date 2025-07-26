@@ -14,6 +14,8 @@ spl_autoload_register(function ($class) {
         }
     }
 
-    // Log si no se encuentra la clase (opcional)
-    error_log("Clase no encontrada: $class");
+    $logFile = __DIR__ . '/log.txt';
+    $error = "Clase no encontrada: $class";
+    file_put_contents($logFile, $error . "\n", FILE_APPEND);
+    error_log($error); 
 });

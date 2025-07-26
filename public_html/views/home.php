@@ -15,7 +15,7 @@
       <ul class="list-inline">
         <?php foreach ($categories as $cat): ?>
           <li class="list-inline-item">
-            <a href="/category/show/<?= $cat['id'] ?>" class="btn btn-outline-primary btn-sm"><?= htmlspecialchars($cat['name']) ?></a>
+            <a href="/public_html/category/show/<?= $cat['id'] ?>" class="btn btn-outline-primary btn-sm"><?= htmlspecialchars($cat['name']) ?></a>
           </li>
         <?php endforeach; ?>
       </ul>
@@ -32,7 +32,7 @@
                 <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                 <p class="card-text"><?= htmlspecialchars($product['specifications']) ?></p>
                 <p><strong>$<?= number_format($product['price'], 2) ?></strong></p>
-                <a href="/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-primary">Ver más</a>
+                <a href="/public_html/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-primary">Ver más</a>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@
               <div class="card-body">
                 <h6 class="card-title"><?= htmlspecialchars($product['name']) ?></h6>
                 <p><strong>$<?= number_format($product['price'], 2) ?></strong></p>
-                <a href="/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-secondary">Ver</a>
+                <a href="/public_html/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-secondary">Ver</a>
               </div>
             </div>
           </div>
