@@ -11,6 +11,9 @@
 
     <a href="/public_html/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
 
+    <a href="/public_html/category/random/<?= $category['id'] ?>" class="btn btn-sm btn-outline-secondary mb-3">Productos sugeridos</a>
+    <a href="/public_html/category/random/<?= $category['id'] ?>" class="btn btn-sm btn-outline-secondary mb-3">Productos de <?= htmlspecialchars($category['name']) ?></a>
+
     <?php if ($childCategories): ?>
       <h5>Categorías Hijas:</h5>
       <ul class="list-inline">
@@ -37,7 +40,7 @@
       <?php endforeach; ?>
     </div>
 
-    <a href="/public_html/" class="btn btn-link">Volver al Home</a>
+    <a href="/public_html/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
   </div>
 </body>
 </html>

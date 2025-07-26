@@ -95,5 +95,29 @@ INSERT INTO comments (product_id, user_id, comment, rating) VALUES
 (9, 9, 'Excelente relación calidad-precio.', 4),
 (10, 10, 'Ideal para navegar y tareas básicas.', 3);
 
+ALTER TABLE products ADD COLUMN visits INT DEFAULT 0;
+
+#Crear tabla acesorios
+CREATE TABLE accessories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+#Insertar registros acesosrios
+INSERT INTO accessories (name, description, category_id) VALUES
+('Mouse inalámbrico', 'Mouse con conexión Bluetooth', 1),
+('Teclado retroiluminado', 'Teclado RGB para gaming', 2),
+('Soporte para laptop', 'Soporte ajustable para portátiles', 3);
+
+#Agregar metainformación a productos
+ALTER TABLE products
+ADD COLUMN created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD COLUMN likes INT DEFAULT 0;
+
+
 
 

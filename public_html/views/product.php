@@ -21,6 +21,15 @@
     <p><strong>Marca:</strong> <?= htmlspecialchars($product['brand']) ?></p>
     <p><strong>Modelo:</strong> <?= htmlspecialchars($product['model']) ?></p>
 
+    <form action="/public_html/product/like/<?= $product['id'] ?>" method="post">
+        <button type="submit" class="btn btn-outline-danger btn-sm">
+            ❤️ Me gusta (<?= $product['likes'] ?>)
+        </button>
+    </form>
+
+    <p><strong>Likes:</strong> <?= $product['likes'] ?></p>
+    <p><small>Creado: <?= $product['created_at'] ?> | Modificado: <?= $product['updated_at'] ?></small></p>
+
     <h4 class="mt-5 text-success">Comentarios</h4>
     <?php foreach ($comments as $c): ?>
       <div class="border rounded p-2 mb-2 bg-white">

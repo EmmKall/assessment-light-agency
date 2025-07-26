@@ -1,5 +1,9 @@
 <?php
-// php/models/Database.php
+
+namespace App\Models;
+
+use PDO;
+use PDOException;
 
 require_once __DIR__ . '/../../install/config.php';
 

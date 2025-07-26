@@ -1,5 +1,9 @@
 <?php
-// php/models/Product.php
+
+namespace App\Models;
+
+use App\Models\Database;
+use PDO;
 
 class Product {
     private $db;
@@ -51,6 +55,27 @@ class Product {
             LIMIT 10;
         ";
         $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addLike($id) {
+        $stmt = $this->db->prepare("UPDATE products SET likes = likes + 1 WHERE id = ?");
+        $stmt->execute([$id]);
+    }
+
+    public function calcularMensualidadConInteres($precio, $meses, $tasaAnual = 10.0) {
+        $r = ($tasaAnual / 100) / 12;
+        $n = $meses;
+        if ($r === 0) return $precio / $n; // sin interés
+        $mensualidad = $precio * ($r * pow(1 + $r, $n)) / (pow(1 + $r, $n) - 1);
+        return round($mensualidad, 2);
+    }
+
+    public function getRandomByCategory($categoryId, $limit = 10) {
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY RAND() LIMIT ?");
+        $stmt->bindValue(1, $categoryId, PDO::PARAM_INT);
+        $stmt->bindValue(2, $limit, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

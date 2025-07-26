@@ -1,5 +1,9 @@
 <?php
-// php/models/Category.php
+
+namespace App\Models;
+
+use App\Models\Database;
+use PDO;
 
 class Category {
     private $db;

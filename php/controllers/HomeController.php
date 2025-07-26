@@ -1,5 +1,9 @@
 <?php
-// php/controllers/HomeController.php
+
+namespace App\Controllers;
+
+use App\Models\Category;
+use App\Models\Product;
 
 class HomeController {
     private $categoryModel;

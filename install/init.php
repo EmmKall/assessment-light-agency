@@ -11,7 +11,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // === Insertar categorías ===
-    /* $stmt = $pdo->prepare("INSERT INTO categories (name, parent_id) VALUES (?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO categories (name, parent_id) VALUES (?, ?)");
     for ($i = 1; $i <= 10; $i++) {
         $stmt->execute(["Categoría Extra $i", rand(1, 3)]);
     }
@@ -48,7 +48,7 @@ try {
             "Comentario extra $i generado automáticamente.",
             rand(3, 5)
         ]);
-    } */
+    }
     
 
     // Generar 200 productos aleatorios

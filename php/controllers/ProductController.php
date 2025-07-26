@@ -1,5 +1,9 @@
 <?php
-// php/controllers/ProductController.php
+
+namespace App\Controllers;
+
+use App\Models\Product;
+use App\Models\Comment;
 
 class ProductController {
     private $productModel;
@@ -17,9 +21,12 @@ class ProductController {
 
         $this->productModel->incrementViews($id);
         // Cálculo de mensualidades sin intereses
-        $price = $product['price'];
+        /* $price = $product['price'];
         $monthly6 = $price / 6;
-        $monthly12 = $price / 12;
+        $monthly12 = $price / 12; */
+        // Calcular mensualidades con interés
+        $monthly6 = $this->productModel->calcularMensualidadConInteres($product['price'], 6);
+        $monthly12 = $this->productModel->calcularMensualidadConInteres($product['price'], 12);
 
         require_once __DIR__ . '/../../public_html/views/product.php';
     }
@@ -27,5 +34,11 @@ class ProductController {
     public function topRated() {
         $products = $this->productModel->getByRating();
         require_once __DIR__ . '/../../public_html/views/top_rated.php';
+    }
+
+    public function like($id) {
+        $this->productModel->addLike($id);
+        header("Location: /public_html/product/show/$id");
+        exit;
     }
 }
