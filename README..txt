@@ -1,9 +1,9 @@
 Nombre completo: Emmanuel Calderón López  
 Posición deseada: Fullstack Developer / Backend Developer  
 Correo de contacto: emmanuel.cal@gmail.com  
-Sisito web: https://emm-dev.com
+Sitio web: https://emm-dev.com
 Portafolio: https://github.com/EmmKall
-Nivel elegido para resolver el assessment: AVANZADO  
+Nivel elegido para resolver el assessment: AVANZADO
 
 Lenguajes y conocimientos técnicos (%):
 - PHP 7.4: 90%
@@ -131,6 +131,11 @@ Este proyecto está desarrollado en **PHP 7.4**, **MySQL 5.7+**, **HTML5**, **CS
   - Categoría
   - Precio mínimo y máximo
 - [x] Resultados responsivos y reutilizables
+- [x] Agregar comentarios si está logueado
+- [x] Logueo de usuarios
+
+---
+
 
 ## 🌐 Rutas del Sistema
 

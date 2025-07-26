@@ -1,2 +1,0 @@
-Clase no encontrada: CategoryController
-Clase no encontrada: CategoryController

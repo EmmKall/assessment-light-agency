@@ -38,7 +38,7 @@ class ProductController {
 
     public function like($id) {
         $this->productModel->addLike($id);
-        header("Location: /public_html/product/show/$id");
+        header("Location: /product/show/$id");
         exit;
     }
 

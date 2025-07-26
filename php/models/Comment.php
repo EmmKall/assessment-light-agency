@@ -23,4 +23,9 @@ class Comment {
         $stmt->execute([$productId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function create($userId, $productId, $content) {
+        $stmt = $this->db->prepare("INSERT INTO comments (user_id, product_id, comment, created_at) VALUES (?, ?, ?, NOW())");
+        return $stmt->execute([$userId, $productId, $content]);
+      }
 }
