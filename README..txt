@@ -24,8 +24,12 @@ Actividades completadas:
 [x] Estructura MVC
 [x] Script SQL con 3 tablas y datos
 [x] Script PHP de inicialización con PDO
-[ ] Listado de productos aleatorios
-[ ] Categorías y filtro
-[ ] Detalle de producto con comentarios
+[x] Comentarios ligados a usuarios
+[x] Listado de productos aleatorios
+[x] Lista de productos por categoría
+[x] Categorías y filtro
+[x] Detalle de producto con comentarios
+[x] Mensualidad de 6 y 12 meses sin intereses
+[x] Indices y constraints en DB
 [ ] Interfaz responsiva (en proceso)
 [ ] Script de mensualidades (opcional en nivel básico)

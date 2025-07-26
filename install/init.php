@@ -11,7 +11,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // === Insertar categorías ===
-    $stmt = $pdo->prepare("INSERT INTO categories (name, parent_id) VALUES (?, ?)");
+    /* $stmt = $pdo->prepare("INSERT INTO categories (name, parent_id) VALUES (?, ?)");
     for ($i = 1; $i <= 10; $i++) {
         $stmt->execute(["Categoría Extra $i", rand(1, 3)]);
     }
@@ -48,10 +48,51 @@ try {
             "Comentario extra $i generado automáticamente.",
             rand(3, 5)
         ]);
+    } */
+    
+
+    // Generar 200 productos aleatorios
+    $stmt = $pdo->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model) VALUES (?, ?, ?, ?, ?, ?)");
+
+    $brands = ['HP', 'Dell', 'Apple', 'Lenovo', 'Asus', 'Acer', 'MSI', 'Samsung'];
+    $models = ['X1', 'G3', 'T450', 'Pavilion', 'ProBook', 'Legion', 'ThinkBook', 'Envy'];
+
+    for ($i = 1; $i <= 200; $i++) {
+        $brand = $brands[array_rand($brands)];
+        $model = $models[array_rand($models)];
+        $spec = "{$brand} {$model} - " . rand(8, 64) . "GB RAM, " . rand(256, 2000) . "GB SSD";
+        $price = rand(10000, 60000);
+        $categoryId = rand(1, 10);
+
+        $stmt->execute([
+            "Producto Random $i",
+            $spec,
+            $price,
+            $categoryId,
+            $brand,
+            $model
+        ]);
+    }
+
+    // Obtener IDs de productos y usuarios
+    $productIds = $pdo->query("SELECT id FROM products")->fetchAll(PDO::FETCH_COLUMN);
+    $userIds = $pdo->query("SELECT id FROM users")->fetchAll(PDO::FETCH_COLUMN);
+
+    // Insertar 1000 comentarios aleatorios
+    $stmt = $pdo->prepare("INSERT INTO comments (product_id, user_id, comment, rating) VALUES (?, ?, ?, ?)");
+
+    for ($i = 1; $i <= 1000; $i++) {
+        $prodId = $productIds[array_rand($productIds)];
+        $userId = $userIds[array_rand($userIds)];
+        $rating = rand(3, 5);
+        $comment = "Comentario automático $i: buen producto con calificación $rating.";
+
+        $stmt->execute([$prodId, $userId, $comment, $rating]);
     }
 
     file_put_contents($logFile, "Inicialización completada con éxito.\n", FILE_APPEND);
     file_put_contents($logFile, "Se insertaron 10 registros en cada tabla.\n", FILE_APPEND);
+    file_put_contents($logFile, "Se insertaron 200 registros en productos y 1000 comentarios.\n", FILE_APPEND);
 
     echo "Inicialización completada correctamente. Revisa el archivo 'init_log.txt'.";
 } catch (PDOException $e) {

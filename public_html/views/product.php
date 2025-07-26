@@ -10,8 +10,12 @@
     <h1 class="text-primary"><?= htmlspecialchars($product['name']) ?></h1>
 
     <p><strong>Precio de contado:</strong> $<?= number_format($product['price'], 2) ?></p>
-    <p><strong>6 pagos sin intereses:</strong> $<?= number_format($product['price'] / 6, 2) ?> / mes</p>
-    <p><strong>12 pagos sin intereses:</strong> $<?= number_format($product['price'] / 12, 2) ?> / mes</p>
+    <p><strong>Visitas:</strong> <?= $product['visits'] ?></p>
+    <div class="alert alert-info">
+        <h5 class="mb-1">Opciones de pago</h5>
+        <p class="mb-1">6 mensualidades de <strong>$<?= number_format($monthly6, 2) ?></strong></p>
+        <p class="mb-0">12 mensualidades de <strong>$<?= number_format($monthly12, 2) ?></strong></p>
+    </div>
 
     <p><strong>Especificaciones:</strong> <?= htmlspecialchars($product['specifications']) ?></p>
     <p><strong>Marca:</strong> <?= htmlspecialchars($product['brand']) ?></p>
@@ -26,7 +30,7 @@
       </div>
     <?php endforeach; ?>
 
-    <a href="/public_html/" class="btn btn-link">Volver al Home</a>
+    <a href="/public_html/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
   </div>
 </body>
 </html>

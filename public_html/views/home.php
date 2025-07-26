@@ -15,6 +15,9 @@
       <ul class="list-inline">
         <?php foreach ($categories as $cat): ?>
           <li class="list-inline-item">
+            <a href="/public_html/product/topRated" class="btn btn-outline-primary btn-sm">Mejores calificados</a>
+          </li>
+          <li class="list-inline-item">
             <a href="/public_html/category/show/<?= $cat['id'] ?>" class="btn btn-outline-primary btn-sm"><?= htmlspecialchars($cat['name']) ?></a>
           </li>
         <?php endforeach; ?>

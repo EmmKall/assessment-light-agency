@@ -35,4 +35,22 @@ class Product {
     public function calcularMensualidad($precio, $meses) {
         return number_format($precio / $meses, 2);
     }
+
+    public function incrementViews($id) {
+        $stmt = $this->db->prepare("UPDATE products SET visits = visits + 1 WHERE id = ?");
+        $stmt->execute([$id]);
+    }
+
+    public function getByRating() {
+        $sql = "
+            SELECT p.*, AVG(c.rating) as avg_rating
+            FROM products p
+            LEFT JOIN comments c ON p.id = c.product_id
+            GROUP BY p.id
+            ORDER BY avg_rating DESC
+            LIMIT 10;
+        ";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

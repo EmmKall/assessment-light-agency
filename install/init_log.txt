@@ -1,3 +1,4 @@
 Inicio del proceso de inicialización...
 Inicialización completada con éxito.
 Se insertaron 10 registros en cada tabla.
+Se insertaron 200 registros en productos y 1000 comentarios.

@@ -9,6 +9,8 @@
   <div class="container py-4">
     <h1 class="text-primary">Categoría: <?= htmlspecialchars($category['name']) ?></h1>
 
+    <a href="/public_html/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
+
     <?php if ($childCategories): ?>
       <h5>Categorías Hijas:</h5>
       <ul class="list-inline">
