@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($product['name']) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="bg-light">
   <div class="container py-4">
@@ -16,6 +17,8 @@
         <p class="mb-1">6 mensualidades de <strong>$<?= number_format($monthly6, 2) ?></strong></p>
         <p class="mb-0">12 mensualidades de <strong>$<?= number_format($monthly12, 2) ?></strong></p>
     </div>
+
+    <img src="/public_html/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm mx-auto">
 
     <p><strong>Especificaciones:</strong> <?= htmlspecialchars($product['specifications']) ?></p>
     <p><strong>Marca:</strong> <?= htmlspecialchars($product['brand']) ?></p>

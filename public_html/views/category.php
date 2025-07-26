@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($category['name']) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="bg-light">
   <div class="container py-4">
@@ -26,10 +27,11 @@
     <?php endif; ?>
 
     <h3 class="text-success mt-4">Productos</h3>
-    <div class="row">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mb-3">
       <?php foreach ($products as $product): ?>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-4 mb-4">
           <div class="card h-100">
+            <img src="/public_html/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm">
             <div class="card-body">
               <h5><?= htmlspecialchars($product['name']) ?></h5>
               <p>$<?= number_format($product['price'], 2) ?></p>

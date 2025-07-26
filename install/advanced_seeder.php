@@ -46,8 +46,8 @@ $usuarios = $pdo->query("SELECT id FROM users")->fetchAll(PDO::FETCH_COLUMN);
 
 // 1. Insertar 2,000 productos
 $insertProducto = $pdo->prepare("
-    INSERT INTO products (name, specifications, price, category_id, brand, model, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())
+    INSERT INTO products (name, specifications, price, category_id, brand, model, image, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
 ");
 
 $marcas = ['HP', 'Dell', 'Lenovo', 'Apple', 'Acer', 'Asus', 'Huawei', 'Samsung'];
@@ -60,7 +60,7 @@ for ($i = 1; $i <= 2000; $i++) {
     $cat = $categorias[array_rand($categorias)];
     $modelo = strtoupper(substr($marca, 0, 3)) . rand(100, 999);
 
-    $insertProducto->execute([$nombre, $specs, $precio, $cat, $marca, $modelo]);
+    $insertProducto->execute([$nombre, $specs, $precio, $cat, $marca, $modelo, $marca]);
 }
 
 echo "✅ Se insertaron 2,000 productos.\n";

@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS ecommerce DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+commerce DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE ecommerce;
 
 
@@ -28,6 +28,7 @@ CREATE TABLE products (
     category_id INT NOT NULL,
     brand VARCHAR(100),
     model VARCHAR(100),
+    image VARCHAR(100),
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
@@ -70,17 +71,17 @@ INSERT INTO categories (name, parent_id) VALUES
 ('Servers', NULL);
 
 # Insertar productos
-INSERT INTO products (name, specifications, price, category_id, brand, model) VALUES
-('HP Pavilion 15', 'Intel i5, 8GB RAM, 512GB SSD', 16500.00, 2, 'HP', 'Pavilion 15-eg0002la'),
-('Dell G15', 'Ryzen 5, 16GB RAM, RTX 3050', 22500.00, 2, 'Dell', 'G15 5515'),
-('MacBook Air M1', 'Apple M1, 8GB RAM, 256GB SSD', 27500.00, 3, 'Apple', 'Air M1'),
-('Acer Aspire 5', 'Intel i3, 8GB RAM, 256GB SSD', 12500.00, 3, 'Acer', 'Aspire 5 A515'),
-('HP Envy', 'Intel i7, 16GB RAM, 1TB SSD', 28500.00, 3, 'HP', 'Envy 13'),
-('Lenovo Legion', 'i7, 32GB RAM, RTX 3070', 38500.00, 2, 'Lenovo', 'Legion 5 Pro'),
-('iMac 24"', 'Apple M1, 8GB RAM, 256GB SSD', 33000.00, 5, 'Apple', 'iMac 24'),
-('Dell OptiPlex', 'i5, 16GB RAM, 512GB SSD', 20500.00, 6, 'Dell', 'OptiPlex 7090'),
-('Huawei MateBook', 'Ryzen 7, 16GB RAM, 512GB SSD', 19500.00, 3, 'Huawei', 'D15'),
-('Chromebook Spin', 'Intel Celeron, 4GB RAM, 64GB eMMC', 8500.00, 9, 'Acer', 'Spin 311');
+INSERT INTO products (name, specifications, price, category_id, brand, model, image) VALUES
+('HP Pavilion 15', 'Intel i5, 8GB RAM, 512GB SSD', 16500.00, 2, 'HP', 'Pavilion 15-eg0002la', 'HP'),
+('Dell G15', 'Ryzen 5, 16GB RAM, RTX 3050', 22500.00, 2, 'Dell', 'G15 5515', 'Dell'),
+('MacBook Air M1', 'Apple M1, 8GB RAM, 256GB SSD', 27500.00, 3, 'Apple', 'Air M1', 'Apple'),
+('Acer Aspire 5', 'Intel i3, 8GB RAM, 256GB SSD', 12500.00, 3, 'Acer', 'Aspire 5 A515', 'Acer'),
+('HP Envy', 'Intel i7, 16GB RAM, 1TB SSD', 28500.00, 3, 'HP', 'Envy 13', 'HP'),
+('Lenovo Legion', 'i7, 32GB RAM, RTX 3070', 38500.00, 2, 'Lenovo', 'Legion 5 Pro', 'Lenovo'),
+('iMac 24"', 'Apple M1, 8GB RAM, 256GB SSD', 33000.00, 5, 'Apple', 'iMac 24', 'Apple'),
+('Dell OptiPlex', 'i5, 16GB RAM, 512GB SSD', 20500.00, 6, 'Dell', 'OptiPlex 7090', 'Dell'),
+('Huawei MateBook', 'Ryzen 7, 16GB RAM, 512GB SSD', 19500.00, 3, 'Huawei', 'D15', 'Huawei'),
+('Chromebook Spin', 'Intel Celeron, 4GB RAM, 64GB eMMC', 8500.00, 9, 'Acer', 'Spin 311', 'Acer');
 
 #Insertar comentarios
 INSERT INTO comments (product_id, user_id, comment, rating) VALUES
@@ -117,7 +118,3 @@ ALTER TABLE products
 ADD COLUMN created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ADD COLUMN likes INT DEFAULT 0;
-
-
-
-

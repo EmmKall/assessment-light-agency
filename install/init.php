@@ -27,7 +27,7 @@ try {
     }
 
     // === Insertar productos ===
-    $stmt = $pdo->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model, image) VALUES (?, ?, ?, ?, ?, ?, ? )");
     for ($i = 1; $i <= 10; $i++) {
         $stmt->execute([
             "Producto Extra $i",
@@ -35,7 +35,8 @@ try {
             rand(10000, 60000),
             rand(1, 10),
             "Marca $i",
-            "Modelo $i"
+            "Modelo $i",
+            "Marca $i",
         ]);
     }
 
@@ -52,7 +53,7 @@ try {
     
 
     // Generar 200 productos aleatorios
-    $stmt = $pdo->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     $brands = ['HP', 'Dell', 'Apple', 'Lenovo', 'Asus', 'Acer', 'MSI', 'Samsung'];
     $models = ['X1', 'G3', 'T450', 'Pavilion', 'ProBook', 'Legion', 'ThinkBook', 'Envy'];
@@ -63,6 +64,7 @@ try {
         $spec = "{$brand} {$model} - " . rand(8, 64) . "GB RAM, " . rand(256, 2000) . "GB SSD";
         $price = rand(10000, 60000);
         $categoryId = rand(1, 10);
+        $image = $model;
 
         $stmt->execute([
             "Producto Random $i",
@@ -70,7 +72,8 @@ try {
             $price,
             $categoryId,
             $brand,
-            $model
+            $model,
+            $image
         ]);
     }
 
