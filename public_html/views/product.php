@@ -12,6 +12,7 @@
   <?php require_once __DIR__ . '/partials/header.php'; ?>
   <?php require_once __DIR__ . '/partials/search_filters.php'; ?>
   <div class="container py-4">
+    <a href="/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
     <h1 class="text-primary"><?= htmlspecialchars($product['name']) ?></h1>
 
     <p><strong>Precio de contado:</strong> $<?= number_format($product['price'], 2) ?></p>
@@ -63,7 +64,6 @@
       </div>
     <?php endforeach; ?>
 
-    <a href="/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
   </div>
   <?php require_once __DIR__ . '/partials/footer.php'; ?>
 </body>

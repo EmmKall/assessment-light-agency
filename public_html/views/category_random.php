@@ -10,6 +10,7 @@
   <?php require_once __DIR__ . '/partials/header.php'; ?>
   <?php require_once __DIR__ . '/partials/search_filters.php'; ?>
   <div class="container py-4">
+    <a href="/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
     <h1 class="text-primary">Productos sugeridos de <?= htmlspecialchars($category['name']) ?></h1>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -29,7 +30,6 @@
       <?php endforeach; ?>
     </div>
 
-    <a href="/" class="btn btn-sm btn-outline-secondary mb-3">← Volver al Home</a>
   </div>
   <?php require_once __DIR__ . '/partials/footer.php'; ?>
 </body>
