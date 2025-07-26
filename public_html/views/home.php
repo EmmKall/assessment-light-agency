@@ -7,19 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="bg-light">
+  <?php require_once __DIR__ . '/partials/header.php'; ?>
+  <?php require_once __DIR__ . '/partials/search_filters.php'; ?>
   <div class="container py-4">
     <h1 class="mb-4 text-primary">Tienda Light - Catálogo</h1>
-
     <!-- Menú de Categorías -->
     <nav class="mb-4">
       <h5>Categorías</h5>
       <ul class="list-inline">
         <li class="list-inline-item">
-          <a href="/public_html/product/topRated" class="btn btn-outline-primary btn-sm">Mejores calificados</a>
+          <a href="/product/topRated" class="btn btn-outline-primary btn-sm">Mejores calificados</a>
         </li>
         <?php foreach ($categories as $cat): ?>
           <li class="list-inline-item">
-            <a href="/public_html/category/show/<?= $cat['id'] ?>" class="btn btn-outline-primary btn-sm"><?= htmlspecialchars($cat['name']) ?></a>
+            <a href="/category/show/<?= $cat['id'] ?>" class="btn btn-outline-primary btn-sm"><?= htmlspecialchars($cat['name']) ?></a>
           </li>
         <?php endforeach; ?>
       </ul>
@@ -32,12 +33,12 @@
         <?php foreach ($featured as $product): ?>
           <div class="col-md-4 mb-4">
             <div class="card h-100">
-            <img src="/public_html/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm">
+            <img src="/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm">
               <div class="card-body">
                 <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                 <p class="card-text"><?= htmlspecialchars($product['specifications']) ?></p>
                 <p><strong>$<?= number_format($product['price'], 2) ?></strong></p>
-                <a href="/public_html/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-primary">Ver más</a>
+                <a href="/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-primary">Ver más</a>
               </div>
             </div>
           </div>
@@ -52,11 +53,11 @@
         <?php foreach ($bestsellers as $product): ?>
           <div class="col-md-3 mb-4">
             <div class="card h-100">
-              <img src="/public_html/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm">
+              <img src="/img/<?= htmlspecialchars($product['image'].'.webp' ?? 'base.webp') ?>" alt="Imagen de <?= htmlspecialchars($product['name']) ?>" class="img-fluid mb-2 rounded shadow-sm">
               <div class="card-body">
                 <h6 class="card-title"><?= htmlspecialchars($product['name']) ?></h6>
                 <p><strong>$<?= number_format($product['price'], 2) ?></strong></p>
-                <a href="/public_html/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-secondary">Ver</a>
+                <a href="/product/show/<?= $product['id'] ?>" class="btn btn-sm btn-secondary">Ver</a>
               </div>
             </div>
           </div>
@@ -64,5 +65,6 @@
       </div>
     </section>
   </div>
+  <?php require_once __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

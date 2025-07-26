@@ -78,4 +78,67 @@ class Product {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function create($data) {
+        $stmt = $this->db->prepare("INSERT INTO products (name, specifications, price, category_id, brand, model, image, created_at, updated_at) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+        $stmt->execute([
+            $data['name'],
+            $data['specifications'],
+            $data['price'],
+            $data['category_id'],
+            $data['brand'],
+            $data['model'],
+            $data['image']
+        ]);
+    }
+    
+    public function update($id, $data) {
+        $stmt = $this->db->prepare("UPDATE products SET name = ?, specifications = ?, price = ?, category_id = ?, brand = ?, model = ?, image = ?, updated_at = NOW() WHERE id = ?");
+        $stmt->execute([
+            $data['name'],
+            $data['specifications'],
+            $data['price'],
+            $data['category_id'],
+            $data['brand'],
+            $data['model'],
+            $data['image'],
+            $id
+        ]);
+    }
+
+    public function searchByName($query) {
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE name LIKE ?");
+        $stmt->execute(['%' . $query . '%']);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function searchAdvanced($query = '', $categoryId = null, $min = null, $max = null) {
+        $sql = "SELECT * FROM products WHERE 1=1";
+        $params = [];
+    
+        if (!empty($query)) {
+            $sql .= " AND name LIKE ?";
+            $params[] = '%' . $query . '%';
+        }
+    
+        if (!empty($categoryId)) {
+            $sql .= " AND category_id = ?";
+            $params[] = $categoryId;
+        }
+    
+        if (!empty($min)) {
+            $sql .= " AND price >= ?";
+            $params[] = $min;
+        }
+    
+        if (!empty($max)) {
+            $sql .= " AND price <= ?";
+            $params[] = $max;
+        }
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

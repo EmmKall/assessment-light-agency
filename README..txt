@@ -12,24 +12,65 @@ Lenguajes y conocimientos técnicos (%):
 - HTML5: 85%
 - CSS3: 75%
 
-Repositorio GitHub: [coloca tu link aquí si lo subiste]  
-Proyecto compatible con PHP 7.4 y estructura MVC sin frameworks.
+Repositorio GitHub: https://github.com/EmmKall/assessment-light-agency
+Este proyecto está desarrollado en **PHP 7.4**, **MySQL 5.7+**, **HTML5**, **CSS3** y **JavaScript puro**, con estructura MVC sin frameworks.
+
+### ✅ Requisitos
+
+- PHP 7.4 o superior
+- Servidor local (Apache/Nginx)
+- MySQL 5.7 o superior
+- Navegador web moderno
+- Opcional: XAMPP, MAMP, Laragon, en este caso se hizo uso de Laragon
 
 ---
 
+### 📁 Estructura esperada del proyecto
+
+/root_project/
+├── public_html/ # Carpeta pública (htdocs o www)
+│ ├── index.php # Punto de entrada
+│ ├── views/ # Todas las vistas y parciales
+│ └── images/ # Imágenes de productos (webp)
+├── php/
+│ ├── controllers/
+│ ├── models/
+│ ├── core/
+│ └── seeders/
+│ └── advanced_seeder.php
+├── database/
+│ └── dump.sql
+
+---
+
+### ⚙️ Configuración del entorno
+
+1. Clona o descarga el proyecto en tu servidor local:
+   - Si usas XAMPP, coloca todo dentro de `htdocs`
+   - Si usas Laragon o MAMP, dentro del directorio público correspondiente
+
 # 🛠 Instrucciones de instalación
 
-1. Crear una base de datos llamada `tienda_light`
-2. Importar el script `install/database.sql`
-3. Configurar tu conexión en `install/config.php` (host, usuario, contraseña)
+1. Crear una base de datos llamada `ecommerce`
+2. Importar el script `install/database.sql`.
+3. Configurar tu conexión en `install/config.php` (host, usuario, contraseña):
+  $host = 'localhost';
+  $db   = 'ecommerce';
+  $user = 'root';
+  $pass = '';
 4. Ejecutar `install/init.php` para insertar registros adicionales
+  php php/install/init.php
 5. (Opcional) Ejecutar `install/advanced_seeder.php` para generar 2000 productos y 10,000 comentarios
+  php php/install/advanced_seeder.php
 6. Asegúrate de que tu raíz pública apunte a `public_html/`
 7. Accede desde el navegador a:  
    - `/` para vista principal  
+   - `/auth/login` para autenticarse, usar usuarios registrados en la tabla de users, ejemplo: carlos.ramirez@example.com
    - `/category/show/{id}` para categorías  
    - `/product/show/{id}` para detalle  
    - `/category/random/{id}` para productos aleatorios filtrados
+   - `/productmanager/form` para crear producto
+   - Las demás rutas estan declaradas más abajo de este documento
 
 ---
 
@@ -37,52 +78,88 @@ Proyecto compatible con PHP 7.4 y estructura MVC sin frameworks.
 
 ## 🔹 NIVEL BÁSICO
 
-- [x] Script SQL con 3 tablas: `products`, `comments`, `categories`
-- [x] Comentarios con nombre, texto y calificación
-- [x] Categorías anidadas mediante `parent_id`
-- [x] Inserción de mínimo 10 registros por tabla
-- [x] Script PHP `init.php` para insertar otros 10 registros usando PDO
-- [x] Log de errores en `init_log.txt`
-- [x] Estructura MVC: carpetas `php/`, `public_html/`, `install/`, `test/`
-- [x] Página de inicio con:
-  - Categorías padres como menú
-  - 10 productos destacados aleatorios
-  - 10 productos más vendidos simulados
-- [x] Vista de categoría muestra subcategorías y productos filtrados
-- [x] Vista de producto muestra especificaciones y comentarios
+- [x] Crear base de datos con las tablas `products`, `categories`, `comments`
+- [x] Crear estructura MVC sin frameworks
+- [x] Mostrar productos aleatorios (`category_random.php`)
+- [x] Mostrar productos por categoría (`category.php`)
+- [x] Mostrar detalles de producto (`product.php`)
+- [x] Mostrar productos con sus comentarios
+- [x] Contador de visitas por producto
+- [x] Generar datos de prueba de productos y comentarios
+- [x] Incluir imagen del producto según su marca (Acer, Apple, etc.)
+- [x] Imagen por defecto si no hay coincidencia (`base.webp`)
+- [x] Página responsive para desktop y móvil
+- [x] Header y footer reutilizables
+- [x] Filtro de búsqueda por nombre de producto
 
 ---
 
 ## 🔸 NIVEL INTERMEDIO
 
-- [x] Vista del producto muestra comentarios reales con usuarios y rating
-- [x] Uso de claves foráneas entre `comments`, `products`, `categories`, `users`
-- [x] Constraint `CHECK(rating BETWEEN 1 AND 5)` implementado
-- [x] Tabla de usuarios y relación con comentarios
-- [x] Columna `visits` en productos para contador de vistas
-- [x] Incremento de visitas cada vez que se accede al producto
-- [x] Vista de productos por categoría
-- [x] Script `advanced_seeder.php` para insertar usuarios, categorías, productos, comentarios de forma automatizada
-- [x] Comentarios generados de forma coherente (en español)
+- [x] Tabla `categories` anidada (padre/hijo)
+- [x] Relación `products → categories` (con padres e hijos)
+- [x] Relación `comments → products`
+- [x] Tabla `users` (id, name, last_name, email)
+- [x] Relación `comments → users`
+- [x] Vista de producto con comentarios y nombre de usuario
+- [x] Panel de login de usuario
+- [x] Sistema de sesión (`AuthController`)
+- [x] Mostrar opciones solo si el usuario está logueado
+- [x] Protección de rutas (crear/editar producto solo si hay sesión activa)
+- [x] Vista de formulario para crear y editar productos (`product_form.php`)
+- [x] Controlador para guardar productos nuevos o actualizados
+- [x] Mostrar datos actualizados correctamente
 
 ---
 
 ## 🔺 NIVEL AVANZADO
 
-- [x] Columnas `created_at`, `updated_at`, `likes` agregadas a `products`
-- [x] Botón y función para dar “me gusta” a un producto
-- [x] Clase `Product.php` calcula mensualidades a 6 y 12 meses:
-  - Sin interés (precio / meses)
-  - Con interés (10% anual con fórmula financiera)
-- [x] Vista de producto incluye ambas mensualidades (sin y con interés)
-- [x] Vista aleatoria `/category/random/{id}` muestra 10 productos con mensualidades calculadas por categoría
-- [x] Seeder avanzado genera:
-  - 2,000 productos con marcas/modelos realistas
-  - 10,000 comentarios en español coherentes
-  - Asociación a categorías reales
-- [x] Cada producto tiene mínimo 2 comentarios
-- [x] Cada categoría/subcategoría tiene al menos un producto
-- [x] Organización de clases con namespaces `App\Models`, `App\Controllers`
-- [x] ClassLoader compatible con namespaces
+- [x] Script para carga masiva de productos con relaciones correctas (`advanced_seeder.php`)
+- [x] Generación automática de marca, modelo y categoría al insertar productos
+- [x] Imágenes asignadas automáticamente según marca
+- [x] Sección de búsqueda con filtros avanzados:
+  - Nombre del producto (LIKE)
+  - Categoría
+  - Precio mínimo y máximo
+- [x] Resultados responsivos y reutilizables
 
+- [x] Script para carga masiva de productos con relaciones correctas (`advanced_seeder.php`)
+- [x] Generación automática de marca, modelo y categoría al insertar productos
+- [x] Imágenes asignadas automáticamente según marca
+- [x] Sección de búsqueda con filtros avanzados:
+  - Nombre del producto (LIKE)
+  - Categoría
+  - Precio mínimo y máximo
+- [x] Resultados responsivos y reutilizables
 
+## 🌐 Rutas del Sistema
+
+### 🏠 Público general
+
+| Ruta                         | Método | Descripción                                 |
+|------------------------------|--------|---------------------------------------------|
+| `/`                          | GET    | Página de inicio, productos destacados      |
+| `/category/show/{id}`        | GET    | Ver productos por categoría padre o hija    |
+| `/category/random`           | GET    | Ver productos aleatorios                    |
+| `/product/show/{id}`         | GET    | Ver detalle del producto y sus comentarios  |
+| `/product/search`            | GET    | Buscar productos con filtros                |
+
+---
+
+### 👤 Autenticación
+
+| Ruta                  | Método | Descripción                        |
+|-----------------------|--------|------------------------------------|
+| `/auth/loginform`     | GET    | Mostrar formulario de login        |
+| `/auth/login`         | POST   | Procesar login (por email)         |
+| `/auth/logout`        | GET    | Cerrar sesión                      |
+
+---
+
+### 🛠️ Administración de productos (requiere login)
+
+| Ruta                            | Método | Descripción                              |
+|---------------------------------|--------|------------------------------------------|
+| `/productmanager/form`          | GET    | Mostrar formulario para crear producto   |
+| `/productmanager/form/{id}`     | GET    | Mostrar formulario para editar producto  |
+| `/productmanager/save`          | POST   | Guardar producto nuevo o editado         |

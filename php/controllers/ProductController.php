@@ -41,4 +41,15 @@ class ProductController {
         header("Location: /public_html/product/show/$id");
         exit;
     }
+
+    public function search() {
+        $query = $_GET['query'] ?? '';
+        $categoryId = $_GET['category_id'] ?? null;
+        $min = $_GET['min_price'] ?? null;
+        $max = $_GET['max_price'] ?? null;
+    
+        $results = $this->productModel->searchAdvanced($query, $categoryId, $min, $max);
+    
+        require_once __DIR__ . '/../../public_html/views/product_search_results.php';
+    }
 }

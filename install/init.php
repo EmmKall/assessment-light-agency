@@ -34,9 +34,9 @@ try {
             "Specs generadas automáticamente",
             rand(10000, 60000),
             rand(1, 10),
-            "Marca $i",
+            "Base",
             "Modelo $i",
-            "Marca $i",
+            "Base",
         ]);
     }
 
